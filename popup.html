@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OU Score Analyzer</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { width: 380px; min-height: 200px; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+<body class="bg-white text-gray-900 font-sans antialiased p-4">
+  <div class="flex flex-col gap-4">
+    <!-- Header -->
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white shrink-0 shadow-sm">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+          <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+        </svg>
+      </div>
+      <div>
+        <h1 class="text-base font-bold tracking-tight text-primary">OU Score Analyzer</h1>
+        <p class="text-xs text-muted">Phân tích điểm ĐH Mở TP.HCM</p>
+      </div>
+    </div>
+
+    <!-- Loading state -->
+    <div id="loading" class="text-center py-10">
+      <div class="w-8 h-8 border-2 border-gray-200 border-t-primary rounded-full animate-spin mx-auto mb-3"></div>
+      <p class="text-sm text-muted">Đang đồng bộ dữ liệu...</p>
+    </div>
+
+    <!-- Error state -->
+    <div id="error" class="hidden text-center py-8">
+      <div class="text-3xl mb-2">⚠️</div>
+      <p id="error-message" class="text-sm font-medium text-gray-800 mb-1">Không tìm thấy bảng điểm.</p>
+      <p class="text-xs text-muted">Hãy đảm bảo bạn đang ở trang <strong class="text-gray-900">tienichsv.ou.edu.vn/#/diem</strong>.</p>
+    </div>
+
+    <!-- Main content -->
+    <div id="main-content" class="hidden flex-col gap-4 animate-fade-in">
+      <!-- Student Info -->
+      <div class="flex items-center gap-3 bg-card p-3 rounded-lg">
+        <div class="text-2xl">👨‍🎓</div>
+        <div>
+          <div class="text-sm font-semibold" id="student-name">—</div>
+          <div class="text-xs text-muted" id="student-id">MSSV: —</div>
+        </div>
+      </div>
+
+      <!-- GPA Summary Cards -->
+      <div class="grid grid-cols-2 gap-3">
+        <div class="bg-card p-4 rounded-lg flex flex-col justify-center text-center relative overflow-hidden">
+          <div class="absolute top-0 left-0 right-0 h-1 bg-primary"></div>
+          <div class="text-xs font-semibold text-muted uppercase tracking-wide mb-1 mt-1">ĐTBTL (hệ 4)</div>
+          <div class="text-3xl font-extrabold tracking-tight" id="gpa-cum-4">—</div>
+          <div class="text-xs font-semibold text-emerald-600 mt-1" id="gpa-classify">—</div>
+        </div>
+        <div class="bg-card p-4 rounded-lg flex flex-col justify-center text-center relative overflow-hidden">
+          <div class="absolute top-0 left-0 right-0 h-1 bg-blue-500"></div>
+          <div class="text-xs font-semibold text-muted uppercase tracking-wide mb-1 mt-1">ĐTBTL (hệ 10)</div>
+          <div class="text-3xl font-extrabold tracking-tight text-blue-600" id="gpa-cum-10">—</div>
+          <div class="text-xs text-muted mt-1" id="total-credits">— tín chỉ</div>
+        </div>
+      </div>
+
+      <!-- Semester quick view -->
+      <div>
+        <div class="flex items-center justify-between mb-2 px-1">
+          <span class="text-sm font-semibold text-gray-700">GPA theo học kỳ</span>
+          <span class="text-xs font-medium bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full" id="sem-count">0 kỳ</span>
+        </div>
+        <div class="flex flex-col gap-1.5 max-h-48 overflow-y-auto no-scrollbar" id="semester-list">
+          <!-- Filled dynamically -->
+        </div>
+      </div>
+
+      <!-- Action buttons -->
+      <div class="flex gap-2 mt-1">
+        <button id="btn-open-dashboard" class="flex-1 bg-primary hover:bg-gray-800 text-white text-sm font-semibold py-2.5 px-4 rounded-md transition-colors flex items-center justify-center gap-2">
+          Mở Dashboard
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="shared.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
