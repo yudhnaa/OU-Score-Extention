@@ -3,6 +3,23 @@
 A powerful and modern Chrome Extension for students of Ho Chi Minh City Open University (OU).
 It provides an elegant dashboard to view, analyze, and simulate your academic performance (GPA).
 
+## Ảnh chụp màn hình (Screenshots)
+
+### 1. Tiện ích popup trên trang điểm OU (Popup Preview)
+<p align="center">
+  <img src="screenshots/popup_preview.png" alt="Popup Preview" width="800">
+</p>
+
+### 2. Tổng quan điểm số (Dashboard Overview)
+<p align="center">
+  <img src="screenshots/dashboard_overview.png" alt="Dashboard Overview" width="800">
+</p>
+
+### 3. Chi tiết bảng điểm & Chỉnh sửa (Dashboard Details & Editing)
+<p align="center">
+  <img src="screenshots/dashboard_details.png" alt="Dashboard Details" width="800">
+</p>
+
 ## Tính năng chính (Features)
 - **Giao diện hiện đại (Modern Dashboard)**: Giao diện sáng sủa (Light SaaS), sang trọng và thân thiện được xây dựng trên nền tảng Tailwind CSS.
 - **Tính toán chuẩn xác**: Tự động tính điểm trung bình tích lũy và ĐTB học kỳ (theo cả hệ 4 và hệ 10).
